@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Academy - School Website</title>
+    
+    <style>
+        /* ===== RESET AND BASIC STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* ===== HEADER AND NAVIGATION ===== */
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .school-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation Menu */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: #ffdd00;
+            border-bottom: 2px solid #ffdd00;
+        }
+
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            margin-top: 80px;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== HOME SECTION ===== */
+        #home {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .home-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: slideDown 0.8s ease;
+        }
+
+        .home-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Welcome Button */
+        .welcome-btn {
+            background-color: #ffdd00;
+            color: #0066cc;
+            padding: 12px 30px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .welcome-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-btn:active {
+            transform: scale(0.98);
+        }
+
+        .welcome-message {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        .welcome-message.show {
+            display: block;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        #about {
+            background-color: white;
+        }
+
+        #about h2 {
+            color: #0066cc;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .about-content {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-left: 4px solid #0066cc;
+            border-radius: 5px;
+            line-height: 1.8;
+        }
+
+        /* ===== COURSES SECTION ===== */
+        #courses {
+            background-color: #f4f4f4;
+        }
+
+        #courses h2 {
+            color: #0066cc;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .courses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-card h3 {
+            color: #0066cc;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .course-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .course-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        #contact {
+            background-color: white;
+        }
+
+        #contact h2 {
+            color: #0066cc;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 5px rgba(0, 102, 204, 0.3);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background-color: #0066cc;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #0052a3;
+            transform: scale(1.02);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Error Message */
+        .error-message {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #d32f2f;
+            background-color: #ffebee;
+        }
+
+        /* Success Message */
+        .success-message {
+            background-color: #4caf50;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideDown 0.5s ease;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #0052a3;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            /* Header adjustments */
+            .header-container {
+                flex-wrap: wrap;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: #0052a3;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+            }
+
+            nav a {
+                display: block;
+                padding: 1rem 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            /* Home section adjustments */
+            #home {
+                min-height: 400px;
+            }
+
+            .home-content h1 {
+                font-size: 2rem;
+            }
+
+            .home-content p {
+                font-size: 1.1rem;
+            }
+
+            /* Section adjustments */
+            section {
+                padding: 40px 15px;
+            }
+
+            #about h2,
+            #courses h2,
+            #contact h2 {
+                font-size: 2rem;
+            }
+
+            /* Courses grid */
+            .courses-container {
+                grid-template-columns: 1fr;
+            }
+
+            /* Contact form */
+            .contact-container {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .school-name {
+                font-size: 1.3rem;
+            }
+
+            .home-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .home-content p {
+                font-size: 1rem;
+            }
+
+            #about h2,
+            #courses h2,
+            #contact h2 {
+                font-size: 1.5rem;
+            }
+
+            .welcome-btn,
+            .submit-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER WITH NAVIGATION ===== -->
+    <header>
+        <div class="header-container">
+            <div class="school-name">🎓 Modern Academy</div>
+            <!-- Navigation menu -->
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <!-- Mobile menu toggle button -->
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <!-- HOME SECTION -->
+        <section id="home">
+            <div class="home-content">
+                <h1>Welcome to Modern Academy</h1>
+                <p>Excellence in Education, Building Future Leaders</p>
+                <!-- Interactive welcome button -->
+                <button class="welcome-btn" id="welcomeBtn">Click for a Welcome Message</button>
+                <!-- Welcome message that appears when button is clicked -->
+                <div class="welcome-message" id="welcomeMessage">
+                    🌟 Welcome to our school! We're excited to have you here. Explore our programs and join our learning community!
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <h2>About Our School</h2>
+            <div class="about-content">
+                <p>
+                    Modern Academy is a leading educational institution dedicated to nurturing young minds and fostering excellence. 
+                    With a team of experienced educators and state-of-the-art facilities, we provide a comprehensive learning environment 
+                    that encourages curiosity, critical thinking, and personal growth.
+                </p>
+                <br>
+                <p>
+                    Our mission is to empower students with knowledge and skills that will help them succeed in their personal and 
+                    professional lives. We believe in a holistic approach to education that combines academics with extracurricular activities 
+                    and character development.
+                </p>
+                <br>
+                <p>
+                    Join us on this journey of learning and discovery. Together, we build tomorrow's leaders!
+                </p>
+            </div>
+        </section>
+
+        <!-- COURSES SECTION -->
+        <section id="courses">
+            <h2>Our Courses</h2>
+            <div class="courses-container">
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div class="course-icon">📚</div>
+                    <h3>English Language</h3>
+                    <p>
+                        Master the art of communication and literature. Develop reading, writing, and public speaking skills 
+                        with expert guidance.
+                    </p>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <div class="course-icon">🔬</div>
+                    <h3>Science & Technology</h3>
+                    <p>
+                        Explore the wonders of science through practical experiments and hands-on learning. From physics to 
+                        biology, discover the natural world.
+                    </p>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <div class="course-icon">🧮</div>
+                    <h3>Mathematics</h3>
+                    <p>
+                        Strengthen your mathematical foundation with problem-solving and logical reasoning. Build confidence 
+                        in numbers and calculations.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-container">
+                <!-- Success message shown after form submission -->
+                <div class="success-message" id="successMessage">
+                    ✓ Thank you for contacting us! We'll get back to you soon.
+                </div>
+
+                <!-- Contact form -->
+                <form id="contactForm">
+                    <!-- Name field -->
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name">
+                        <span class="error-message" id="nameError">Name is required</span>
+                    </div>
+
+                    <!-- Email field -->
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address">
+                        <span class="error-message" id="emailError">Please enter a valid email address</span>
+                    </div>
+
+                    <!-- Message field -->
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Write your message here..."></textarea>
+                        <span class="error-message" id="messageError">Message is required</span>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 Modern Academy. All rights reserved. | Designed for Learning Excellence</p>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ===== MOBILE MENU TOGGLE =====
+        // Toggle the mobile navigation menu when the menu button is clicked
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+
+        // Close the menu when a navigation link is clicked
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                nav.classList.remove('active');
+            });
+        });
+
+        // ===== WELCOME BUTTON =====
+        // Show/hide the welcome message when the button is clicked
+        const welcomeBtn = document.getElementById('welcomeBtn');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+
+        welcomeBtn.addEventListener('click', function() {
+            welcomeMessage.classList.toggle('show');
+        });
+
+        // ===== FORM VALIDATION =====
+        // Validate form inputs and handle submission
+        const contactForm = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        const successMessage = document.getElementById('successMessage');
+
+        // Function to validate email format
+        function isValidEmail(email) {
+            // Simple email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Function to show error message
+        function showError(input, errorElement) {
+            input.parentElement.classList.add('error');
+            errorElement.classList.add('show');
+        }
+
+        // Function to hide error message
+        function hideError(input, errorElement) {
+            input.parentElement.classList.remove('error');
+            errorElement.classList.remove('show');
+        }
+
+        // Form submission event listener
+        contactForm.addEventListener('submit', function(event) {
+            // Prevent form from actually submitting
+            event.preventDefault();
+
+            // Get error message elements
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const messageError = document.getElementById('messageError');
+
+            // Reset all error states
+            hideError(nameInput, nameError);
+            hideError(emailInput, emailError);
+            hideError(messageInput, messageError);
+            successMessage.classList.remove('show');
+
+            // Flag to track if form is valid
+            let isFormValid = true;
+
+            // Validate name field
+            if (nameInput.value.trim() === '') {
+                showError(nameInput, nameError);
+                isFormValid = false;
+            }
+
+            // Validate email field
+            if (emailInput.value.trim() === '') {
+                emailError.textContent = 'Email is required';
+                showError(emailInput, emailError);
+                isFormValid = false;
+            } else if (!isValidEmail(emailInput.value.trim())) {
+                emailError.textContent = 'Please enter a valid email address';
+                showError(emailInput, emailError);
+                isFormValid = false;
+            }
+
+            // Validate message field
+            if (messageInput.value.trim() === '') {
+                showError(messageInput, messageError);
+                isFormValid = false;
+            }
+
+            // If form is valid, show success message and reset form
+            if (isFormValid) {
+                // Show success message
+                successMessage.classList.add('show');
+
+                // Reset form fields
+                contactForm.reset();
+
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    successMessage.classList.remove('show');
+                }, 5000);
+
+                // Optional: Show browser alert (as per requirements)
+                alert('Thank you for your message! We will contact you soon.');
+            }
+        });
+
+        // Real-time validation: Clear error when user starts typing
+        nameInput.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                hideError(this, document.getElementById('nameError'));
+            }
+        });
+
+        emailInput.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                hideError(this, document.getElementById('emailError'));
+            }
+        });
+
+        messageInput.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                hideError(this, document.getElementById('messageError'));
+            }
+        });
+    </script>
+</body>
+</html>
